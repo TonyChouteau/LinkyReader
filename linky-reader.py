@@ -57,7 +57,7 @@ with open(log_file, 'a') as log:
             if tag is None:
                 tag = "N/A"
 
-            log_entry = f"{tag_found}] {tag} :\n{timestamp} - {data_decoded}\n"
+            log_entry = f"{tag_found}] {tag} :\n{timestamp} - {data_decoded}"
             log.write(log_entry)
 
             # Print to console as well
