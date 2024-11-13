@@ -45,7 +45,7 @@ with open(log_file, 'a') as log:
 
         # If data is received, log it
         if data:
-            data_decoded = data.decode('ascii', errors='ignore').replace('\n', '')
+            data_decoded = data.decode('ascii', errors='ignore')
             timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
 
             tag_found = 0
@@ -56,7 +56,8 @@ with open(log_file, 'a') as log:
                     tag = linky_code[key]
             if tag is None:
                 tag = "N/A"
-            log_entry = f"{timestamp} - {data_decoded} # [{tag_found}] {tag}"
+
+            log_entry = f"{tag_found}] {tag} :\n{timestamp} - {data_decoded}\n"
             log.write(log_entry)
 
             # Print to console as well
