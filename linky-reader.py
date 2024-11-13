@@ -45,7 +45,7 @@ with open(log_file, 'a') as log:
 
         # If data is received, log it
         if data:
-            data_decoded = data.decode('ascii', errors='ignore')
+            data_decoded = data.decode('ascii', errors='ignore').replace('\n', '')
             timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
 
             tag_found = 0
