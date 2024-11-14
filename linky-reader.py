@@ -3,9 +3,12 @@ import time
 from datetime import datetime
 import psycopg2
 from datetime import datetime
+import os
+
+path = os.path.dirname(os.path.abspath(__file__))
 
 # Connect to your PostgreSQL database
-with open("db_login.txt") as f:
+with open(f"{path}/db_login.txt") as f:
     lines = f.readlines()
     conn = psycopg2.connect(
         dbname=lines[0].replace("\n", ""),    # Replace with your database name
@@ -22,7 +25,7 @@ ser.parity = serial.PARITY_EVEN  # Set even parity
 ser.stopbits = serial.STOPBITS_ONE  # Set stop bits to 1
 
 # Log file where the TIC data will be saved
-log_file = '/home/pi/tic_data.log'
+log_file = f'{path}/tic_data.log'
 
 linky_code = {
     "ADCO": {
