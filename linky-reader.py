@@ -22,16 +22,16 @@ linky_code = {
     },  # The selected tariff option (e.g., HC/HP, EJP, Tempo)
     "ISOUSC": {
         "name": "Intensité souscrite",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "Wh"
     },  # The subscribed intensity (maximum power limit)
     # "BASE": "Index option Base",        # The base consumption index (for standard tariff)
     "HCHC": {
         "name": "Index Heures Creuses",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "Wh"
     },   # The consumption index for off-peak hours (Heures Creuses)
     "HCHP": {
         "name": "Index Heures Pleines",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "Wh"
     },  # The consumption index for peak hours (Heures Pleines)
     # "EJPHN": "Index option EJP Heures Normales",     # The index for EJP normal hours
     # "EJPHPM": "Index option EJP Heures de Pointe Mobile",    # The index for EJP peak mobile hours
@@ -49,16 +49,16 @@ linky_code = {
     # "DEMAIN": "Couleur du lendemain",  # Color of the next day (for the Tempo tariff, indicating the next day’s type)
     "IINST": {
         "name": "Intensité Instantanée",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "A"
     },  # The instantaneous intensity (current power usage)
     # "ADPS": "Avertissement de Dépassement De Puissance Souscrite",  # Warning for exceeding the subscribed power limit
     "IMAX": {
         "name": "Intensité maximale appelée",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "A"
     },  # The maximum intensity (current highest power demand)
     "PAPP": {
         "name": "Puissance apparente",
-        "format": lambda data: data.split(" ")[1]
+        "format": lambda data: data.split(" ")[1] + "VA"
     },  # Apparent power (combination of active and reactive power)
     "HHPHC": {
         "name": "Horaire Heures Pleines Heures Creuses",
@@ -87,11 +87,11 @@ with open(log_file, 'a') as log:
             for key in linky_code:
                 if key in data_decoded:
                     tag_found += 1
-                    tag = linky_code[key]["name"] + " " + linky_code[key]["format"](data_decoded)
+                    tag = linky_code[key]["name"] + " : " + linky_code[key]["format"](data_decoded)
             if tag is None:
                 tag = "N/A"
 
-            log_entry = f"{tag_found}] {tag} :\n{timestamp} - {data_decoded}"
+            log_entry = f"{tag_found}] {tag}\n{timestamp} - {data_decoded}"
             log.write(log_entry)
 
             # Print to console as well
