@@ -111,7 +111,7 @@ with open(log_file, 'a') as log:
                 value = None
                 key = None
 
-            if key == "ADCO":
+            if key == "ADCO" and len(values) == 22:
                 cur = conn.cursor()
                 insert_query = """
                     INSERT INTO linky_data (
@@ -152,6 +152,8 @@ with open(log_file, 'a') as log:
                 cur.close()
                 # conn.close()
 
+                values = []
+            else:
                 values = []
 
             values.append(value)
