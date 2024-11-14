@@ -111,49 +111,51 @@ with open(log_file, 'a') as log:
                 value = None
                 key = None
 
-            if key == "ADCO" and len(values) == 22:
-                cur = conn.cursor()
-                insert_query = """
-                    INSERT INTO linky_data (
-                        ADCO, ADCO_timestamp,
-                        OPTARIF, OPTARIF_timestamp,
-                        ISOUSC, ISOUSC_timestamp,
-                        HCHC, HCHC_timestamp,
-                        HCHP, HCHP_timestamp,
-                        PTEC, PTEC_timestamp,
-                        IINST, IINST_timestamp,
-                        IMAX, IMAX_timestamp,
-                        PAPP, PAPP_timestamp,
-                        HHPHC, HHPHC_timestamp,
-                        MOTDETAT, MOTDETAT_timestamp
-                    ) 
-                    VALUES (
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s,
-                        %s, %s
-                    );
-                """
+            if key == "ADCO":
+                if len(values) == 22:
+                    log.write("Saving...")
 
-                # Execute the query with the provided values
-                cur.execute(insert_query, values)
+                    cur = conn.cursor()
+                    insert_query = """
+                        INSERT INTO linky_data (
+                            ADCO, ADCO_timestamp,
+                            OPTARIF, OPTARIF_timestamp,
+                            ISOUSC, ISOUSC_timestamp,
+                            HCHC, HCHC_timestamp,
+                            HCHP, HCHP_timestamp,
+                            PTEC, PTEC_timestamp,
+                            IINST, IINST_timestamp,
+                            IMAX, IMAX_timestamp,
+                            PAPP, PAPP_timestamp,
+                            HHPHC, HHPHC_timestamp,
+                            MOTDETAT, MOTDETAT_timestamp
+                        ) 
+                        VALUES (
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s,
+                            %s, %s
+                        );
+                    """
 
-                # Commit the transaction
-                conn.commit()
+                    # Execute the query with the provided values
+                    cur.execute(insert_query, values)
 
-                # Close the cursor and connection
-                cur.close()
-                # conn.close()
+                    # Commit the transaction
+                    conn.commit()
 
-                values = []
-            else:
+                    # Close the cursor and connection
+                    cur.close()
+                    # conn.close()
+                    log.write(f"Saved {timestamp}")
+
                 values = []
 
             values.append(value)
