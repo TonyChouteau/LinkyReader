@@ -85,7 +85,7 @@ with open(log_file, 'a') as log:
             tag_found = 0
             tag = None
             for key in linky_code:
-                if linky_code[key]["name"] in data_decoded:
+                if key in data_decoded:
                     tag_found += 1
                     tag = linky_code[key]["name"] + linky_code[key]["format"](data_decoded)
             if tag is None:
