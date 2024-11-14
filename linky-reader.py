@@ -8,11 +8,11 @@ from datetime import datetime
 with open("db_login.txt") as f:
     lines = f.readlines()
     conn = psycopg2.connect(
-        dbname=lines[0],    # Replace with your database name
-        user=lines[1],      # Replace with your username
-        password=lines[2],  # Replace with your password
-        host=lines[3],      # Replace with your host, if different
-        port=lines[4]       # Replace with your PostgreSQL port, if different
+        dbname=lines[0].replace("\n", ""),    # Replace with your database name
+        user=lines[1].replace("\n", ""),      # Replace with your username
+        password=lines[2].replace("\n", ""),  # Replace with your password
+        host=lines[3].replace("\n", ""),      # Replace with your host, if different
+        port=lines[4].replace("\n", "")       # Replace with your PostgreSQL port, if different
     )
 
 # Configure the serial port (ensure it matches your setup)
