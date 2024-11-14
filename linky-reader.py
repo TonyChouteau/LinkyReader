@@ -113,7 +113,9 @@ with open(log_file, 'a') as log:
 
             if key == "ADCO":
                 if len(values) == 22:
-                    log.write("Saving...")
+                    log_entry = f"Saving..."
+                    log.write(log_entry)
+                    print(log_entry)
 
                     cur = conn.cursor()
                     insert_query = """
@@ -154,7 +156,10 @@ with open(log_file, 'a') as log:
                     # Close the cursor and connection
                     cur.close()
                     # conn.close()
-                    log.write(f"Saved {timestamp}")
+
+                    log_entry = f"Saved {timestamp}"
+                    log.write(log_entry)
+                    print(log_entry)
 
                 values = []
 
