@@ -27,11 +27,11 @@ linky_code = {
     # "BASE": "Index option Base",        # The base consumption index (for standard tariff)
     "HCHC": {
         "name": "Index Heures Creuses",
-        "format": lambda data: data.split("HCHC ")[1].split(" !")[0]
+        "format": lambda data: data.split("HCHC ")[1].split(" )")[0]
     },   # The consumption index for off-peak hours (Heures Creuses)
     "HCHP": {
         "name": "Index Heures Pleines",
-        "format": lambda data: data.split("HCHP ")[1].split(" +")[0]
+        "format": lambda data: data.split("HCHP ")[1].split(" 6")[0]
     },  # The consumption index for peak hours (Heures Pleines)
     # "EJPHN": "Index option EJP Heures Normales",     # The index for EJP normal hours
     # "EJPHPM": "Index option EJP Heures de Pointe Mobile",    # The index for EJP peak mobile hours
