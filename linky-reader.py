@@ -31,7 +31,7 @@ linky_code = {
     },   # The consumption index for off-peak hours (Heures Creuses)
     "HCHP": {
         "name": "Index Heures Pleines",
-        "format": lambda data: data.split("HCHP ")[1].split(" )")[0]
+        "format": lambda data: data.split("HCHP ")[1].split(" +")[0]
     },  # The consumption index for peak hours (Heures Pleines)
     # "EJPHN": "Index option EJP Heures Normales",     # The index for EJP normal hours
     # "EJPHPM": "Index option EJP Heures de Pointe Mobile",    # The index for EJP peak mobile hours
@@ -49,7 +49,7 @@ linky_code = {
     # "DEMAIN": "Couleur du lendemain",  # Color of the next day (for the Tempo tariff, indicating the next day’s type)
     "IINST": {
         "name": "Intensité Instantanée",
-        "format": lambda data: data.split("IINST ")[1].split(" ]")[0]
+        "format": lambda data: data.split("IINST ")[1].split(" \\")[0]
     },  # The instantaneous intensity (current power usage)
     # "ADPS": "Avertissement de Dépassement De Puissance Souscrite",  # Warning for exceeding the subscribed power limit
     "IMAX": {
@@ -58,7 +58,7 @@ linky_code = {
     },  # The maximum intensity (current highest power demand)
     "PAPP": {
         "name": "Puissance apparente",
-        "format": lambda data: data.split("PAPP ")[1].split(" -")[0]
+        "format": lambda data: data.split("PAPP ")[1].split(" &")[0]
     },  # Apparent power (combination of active and reactive power)
     "HHPHC": {
         "name": "Horaire Heures Pleines Heures Creuses",
@@ -87,7 +87,7 @@ with open(log_file, 'a') as log:
             for key in linky_code:
                 if key in data_decoded:
                     tag_found += 1
-                    tag = linky_code[key]["name"] + linky_code[key]["format"](data_decoded)
+                    tag = linky_code[key]["name"] + " " + linky_code[key]["format"](data_decoded)
             if tag is None:
                 tag = "N/A"
 
