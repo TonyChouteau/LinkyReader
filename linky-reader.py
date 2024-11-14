@@ -93,7 +93,7 @@ with open(log_file, 'a') as log:
 
         # If data is received, log it
         if data:
-            data_decoded = data.decode('ascii', errors='ignore')
+            data_decoded = data.decode('ascii', errors='ignore').replace('\n', '')
             timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
 
             tag_found = 0
@@ -159,7 +159,7 @@ with open(log_file, 'a') as log:
             values.append(value)
             values.append(datetime.now())
 
-            log_entry = f"{tag} : {value} | {timestamp} - {data_decoded.replace('\n', '')} | {len(values)}"
+            log_entry = f"{tag} : {value} | {timestamp} - {data_decoded} | {len(values)}"
             log.write(log_entry)
 
             # Print to console as well
