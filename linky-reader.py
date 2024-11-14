@@ -159,7 +159,7 @@ with open(log_file, 'a') as log:
             values.append(value)
             values.append(datetime.now())
 
-            log_entry = f"{tag} : {value} | {timestamp} - {data_decoded}"
+            log_entry = f"{tag} : {value} | {timestamp} - {data_decoded.replace('\n', '')} | {len(values)}"
             log.write(log_entry)
 
             # Print to console as well
