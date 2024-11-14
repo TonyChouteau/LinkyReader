@@ -2,7 +2,6 @@ import serial
 import time
 from datetime import datetime
 import psycopg2
-from psycopg2 import sql
 from datetime import datetime
 
 # Connect to your PostgreSQL database
@@ -155,8 +154,8 @@ with open(log_file, 'a') as log:
 
                 values = []
 
-            current_line.append(value)
-            current_line.append(datetime.now())
+            values.append(value)
+            values.append(datetime.now())
 
             log_entry = f"{tag} : {value} | {timestamp} - {data_decoded}"
             log.write(log_entry)
