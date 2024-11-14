@@ -11,7 +11,7 @@ ser.stopbits = serial.STOPBITS_ONE # Set stop bits to 1
 log_file = '/home/pi/tic_data.log'
 
 linky_code = {
-    "ADCO": "Adresse du compteur",      # The meter's address (a unique identifier for the meter)
+    "ADCO": "Identifiant du compteur",      # The meter's address (a unique identifier for the meter)
     "OPTARIF": "Option tarifaire choisie",   # The selected tariff option (e.g., HC/HP, EJP, Tempo)
     "ISOUSC": "Intensité souscrite",    # The subscribed intensity (maximum power limit)
     "BASE": "Index option Base",        # The base consumption index (for standard tariff)
